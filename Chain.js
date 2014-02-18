@@ -55,6 +55,7 @@
      * @memberOf Chain
      * @throws {Error} If fn is not instance of Function
      * @param {Function} fn Chain function
+     * @return {Chain}
      */
     Chain.prototype.then = function(fn)
     {
@@ -63,6 +64,8 @@
         }
 
         this.fnList.push(fn);
+        
+        return this;
     };
 
     /**
