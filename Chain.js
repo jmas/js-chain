@@ -6,17 +6,40 @@
     /**
      * Chain class.
      * @class Chain
+     * @property {Function} onend Function that will be called in the end of chain
+     * @property {Function} onfail Function that will be called when you execute fail() function
+     * @property {Function} onwalk Function that will be called when you execute walk() function
+     * @property {array} fnList Array of chain functions what added by then() function
      */
     Chain = function() {};
     Chain.prototype = {
+        /**
+         * Function that will be called in the end of chain
+         * @type Function
+         */
         onend: null,
+        
+        /**
+         * Function that will be called when you execute fail() function
+         * @type Function
+         */
         onfail: null,
+        
+        /**
+         * Function that will be called when you execute walk() function
+         * @type Function
+         */
         onwalk: null,
+        
+        /**
+         * Array of chain functions what added by then() function
+         * @type array
+         */
         fnList: [],
         
         /**
          * Add chain item.
-         * @param fn {Function} Chain function
+         * @param {Function} fn Chain function
          */
         then: function(fn)
         {
