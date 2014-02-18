@@ -1,6 +1,7 @@
 Chain.js - is extremely small JavaScript utility that can help you to create chain of async calls.
 
 ```javascript
+// New chain
 var chain = new Chain;
 
 // Get common image
@@ -16,16 +17,24 @@ chain.then(function(data) {
     image.src = 'Wiki.png';
 });
 
-// Crop image
+// Get text
 chain.then(function(data) {
-    var request = new Request;
+    var request = new XMLHttpRequest();
 
-    request.onend = function() {
-        data.request = this.getData();
+    request.open('GET', 'content.html', false);
+    
+    request.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                data.text = this.responseText;
+                chain.walk(data);
+            } else {
+                chain.fail("Can't load text!");
+            }
+        }
     };
-    request.onfail = function() {
-        chain.fail("Can't load request data!");
-    };
+
+    request.send(null);
 });
 
 chain.onend = function(data) {
