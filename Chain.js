@@ -1,8 +1,13 @@
 (function() {
 
     var globalScope = this,
-        Chain = function() {};
+        Chain;
 
+    /**
+     * Chain class.
+     * @class Chain
+     */
+    Chain = function() {};
     Chain.prototype = {
         onend: null,
         onfail: null,
@@ -11,6 +16,7 @@
         
         /**
          * Add chain item.
+         * @param fn {Function} Chain function
          */
         then: function(fn)
         {
