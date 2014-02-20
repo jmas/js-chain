@@ -14,7 +14,9 @@
      * @property {Function} onwalk Function that will be called when you execute walk() function
      * @property {array} fnList Array of chain functions what added by then() function
      */
-    Chain = function() {};
+    Chain = function() {
+        this.fnList = [];
+    };
 
     /**
      * Function that will be called in the end of chain
